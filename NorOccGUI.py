@@ -344,6 +344,7 @@ def missing():
     proglabel2.config(text="   ")
     root.update_idletasks()
 
+
 root = Tk()
 root.title('NorOcc Table - Audit Process')
 root.iconbitmap('IT.ico')
@@ -364,10 +365,10 @@ tables_btn.grid(row=1, column=0, columnspan=1, pady=10, padx=10, ipadx=39)
 # Create Audit Button
 audit_btn = Button(root, text="Reuse Audits", command=audit)
 audit_btn.grid(row=1, column=1, columnspan=1, pady=10, padx=10, ipadx=23)
-#Create A Delete Button
+# Create A Delete Button
 miss_btn = Button(root, text="Missing UMTS", command=missing)
 miss_btn.grid(row=2, column=0, columnspan=1, pady=10, padx=10, ipadx=18)
-#Create A Delete Button
+# Create A Delete Button
 undef_btn = Button(root, text="Undefined GSM", command=undefined)
 undef_btn.grid(row=2, column=1, columnspan=1, pady=10, padx=10, ipadx=17)
 # Create an Exit Button

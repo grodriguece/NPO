@@ -7,7 +7,7 @@ def pasarchivo(ruta, datb, tablas, tipo):
     from pyexcelerate import Workbook
     from pathlib import Path
     from datetime import date
-    top= tk.Toplevel()
+    top = tk.Toplevel()
     top.title("Process Progress")
     top.geometry("300x600+750+120")
     top.iconbitmap('IT.ico')
