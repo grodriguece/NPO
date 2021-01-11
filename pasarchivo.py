@@ -80,4 +80,4 @@ def pasarchivo(ruta, datb, tablas, tipo):
     conn.close()
 
 
-# pasarchivo("C:/XML/SQL/missiing", "20200522_sqlite.db", "tablasSQL.csv", "Audit")
+# pasarchivo("C:/SQLite", "20200522_sqlite.db", "tablasSQL.csv", "Audit")

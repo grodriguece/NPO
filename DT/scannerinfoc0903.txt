@@ -1,0 +1,64 @@
+PILOTSCAN parameter to get Ec/No, RSCP
+PILOTSCAN,14:43:24.336,,5,4,9685,1,-57.7,50002,10,6,495,-17.4,-75.1,,,,214,-19.1,-76.8,,,,1,-19.6,-77.3,,,,422,-20.6,-78.3,,,,437,-20.7,-78.4,,,,376,-23.3,-81.0,,,,175,-23.9,-81.6,,,,183,-25.1,-82.8,,,,176,-26.2,-83.8,,,,32,-26.8,-84.5,,,
+
+Measured system 5 = UMTS FDD
+Number of header parameters 4
+Channel number 9685
+UMTS channel type 1 = CPICH
+Carrier RSSI -57.7
+Band 50002 = UMTS FDD 1900 band 2
+Number of cells 10
+Number of parameters per cell 6
+Scrambling code 495
+Ec/N0 -17.4
+RSCP -75.1
+
+
+FREQSCAN,14:43:24.775,,1,1,10850,10,5,181,,-63.2,,,182,,-57.7,,,183,60,-59.4,,,184,45,-59.7,,,185,60,-68.7,,,186,50,-62.0,,,187,46,-65.9,,,188,40,-59.2,,,189,58,-57.3,,,190,,-75.2,,
+
+Measured system 1 = GSM
+Number of header parameters 1
+Band 10850 = GSM 850
+Number of channels 10
+Number of parameters per channel 5
+Channel number 181
+Base station identification code null
+RX level -63.2
+C/I
+SCH RX level
+
+
+OFDMSCAN,14:43:25.204,,7,5,626,1,6,-57.1,70002,6,10,448,1,1,-76.5,-11.6,4.8,283827,4,0,,53,1,0,-81.9,-16.9,-5.4,262626,4,0,,303,1,1,-82.9,-18.0,-6.3,140747,44,0,,289,1,1,-87.5,-22.5,-11.5,41448,4,1,,111,1,1,-91.3,-26.4,-16.1,210811,4,0,,482,1,0,-93.5,-28.5,-17.9,133811,0,0,,10,6,448,0,-76.3,-11.4,5.2,,448,1,-76.7,-11.7,4.4,,53,0,-81.9,-16.9,-5.4,,303,0,-82.8,-17.8,-6.0,,303,1,-83.1,-18.1,-6.6,,289,0,-84.5,-19.5,-8.6,,289,1,-104.9,-40.0,-28.9,,111,0,-97.7,-32.8,-22.6,,111,1,-88.9,-23.9,-13.6,,482,0,-93.5,-28.5,-17.9,
+
+Measured system 7 = LTE FDD
+Number of header parameters 5
+Channel number 626
+Physical channel or signal type 1
+DL bandwidth 6 = 1.4 MHz
+Carrier RSSI -57.1
+Band 70002 = LTE FDD 1900 band 2
+Number of cells 6
+Number of parameters per cell 10
+Physical cell identity 448
+Cyclic prefix DL 1 = Normal 15 kHz
+Detected TX antenna ports 1 = Ports 0-1
+RSRP -76.5
+RSRQ -11.6
+CINR 4.8
+Time offset 283827
+Delay spread 4
+Scanning result indication 0
+MIMO mode information null
+
+
+CELLPOLLUTION,14:43:24.432,,3,5,50002,9685,6,3,495,-17.4,-75.1,214,-19.1,-76.8,1,-19.6,-77.3,422,-20.6,-78.3,437,-20.7,-78.4,376,-23.3,-81.0
+
+Number of header parameters 3
+Source system 5 = UMTS FDD
+50002 = UMTS FDD 1900 band 2
+Source channel number 9685
+Number of cells 6
+Number of parameters per cell 3
+Pilot pollution scrambling code 495
+Pilot pollution Ec/N0 -17.4
+Pilot pollution RSCP -75.1

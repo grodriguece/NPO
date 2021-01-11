@@ -1,74 +1,43 @@
-from pathlib import Path
-from rfpack.pasarchivoc import pasarchivo
+from pasarchivo import *
 from tkinter import *
 from tkinter import ttk
-from PIL import ImageTk, Image
+from PIL import ImageTk,Image
 from tkinter import messagebox
 
 
-def specaud():
-    from datetime import date
-    from pathlib import Path
-    from pyexcelerate import Workbook
-    from rfpack.validatabc import validatab
-    from rfpack.customparamc import customparam
-    from rfpack.pntopdc import pntopd
-    from rfpack.graffullc import graffull
-    from rfpack.csvfrmxlsxc import xlsxfmcsv
-    proglabel2.config(text="")  # label init
-    datab = Path('C:/SQLite/20200522_sqlite.db')
-    pdf_file = date.today().strftime("%y%m%d") + '_Feat1ParAudit.pdf'
-    pdf_path = datab.parent / pdf_file
-    xls_file = Path(pdf_path.with_suffix('.xlsx'))
-    wb = Workbook()  # pyexcelerate Workbook
-    fndtbl = datab.parent / Path('findtable.csv')
-    tbcstm = datab.parent / Path('tabcustom.csv')
-    validatab(datab, fndtbl, tbcstm)  # locate input tab/parameters in dbabase
-    pnglist, sheetsdic = customparam(datab, 'tab_par', 5, root, my_progress, proglabel2) # generates png files
-    # print Total info in 4 pages, 3 regions per page, bar starts at 60%
-    pnglist1 = graffull(xls_file, 'Total', 4, 60, root, my_progress, proglabel2)
-    pnglist1.extend(pnglist)  # review png at the beginning
-    pntopd(pdf_path, pnglist1, 50, 550, 500, 500)  # png to pdf
-    xlsxfmcsv(xls_file, sheetsdic, 75, root, my_progress, proglabel2 )
+def tables():
+    pasarchivo("C:/SQLite", "20200522_sqlite.db", "tablasSQL.csv", "tabla")
     my_progress['value'] = 100  # prog bar increase a cording to i steps in loop
     proglabel2.config(text=my_progress['value'])
-    response = messagebox.showinfo("Specific Audit", "Process Finished")
+    response = messagebox.showinfo("Tablas", "Process Finished")
     proglabel3 = Label(root, text=response)
-    my_progress['value'] = 0  # prog bar increase according to i steps in loop
+    # proglabel3 = Label(root, text="")
+    # proglabel3.grid(row=3, column=1, pady=10)
+    my_progress['value'] = 0  # prog bar increase a cording to i steps in loop
     proglabel2.config(text="   ")
-    root.update_idletasks()
-    # try to put progress inside routine and avoid to exit from app
-
-
-def gralaud():
-    from rfpack.par_audc import par_aud
-    datab = Path('C:/sqlite/20201016_sqlite.db')
-    tabfile = datab.parent / Path('tablasSQL.csv')
-    tabfileop = "audit2"
-    par_aud(datab, tabfile, tabfileop, 1, root, my_progress, proglabel2)  # audit2 column from csv table file
-
-
-def tables():
-    datab = Path('C:/sqlite/20200522_sqlite.db')
-    tabfile = datab.parent / Path('tablasSQL.csv')
-    tabfileop = "tabla"
-    pasarchivo(datab, tabfile, tabfileop, 1, root, my_progress, proglabel2)
+    # root.update_idletasks()
 
 
 def audit():
-    datab = Path('C:/sqlite/20200522_sqlite.db')
-    tabfile = datab.parent / Path('tablasSQL.csv')
-    tabfileop = "Audit"
-    pasarchivo(datab, tabfile, tabfileop, 1, root, my_progress, proglabel2)
-
+    pasarchivo("C:/SQLite", "20200522_sqlite.db", "tablasSQL.csv", "Audit")
+    my_progress['value'] = 100  # prog bar increase a cording to i steps in loop
+    proglabel2.config(text=my_progress['value'])
+    response = messagebox.showinfo("Audit", "Process Finished")
+    proglabel3 = Label(root, text=response)
+    # proglabel3 = Label(root, text="")
+    # proglabel3.grid(row=3, column=1, pady=10)
+    my_progress['value'] = 0  # prog bar increase a cording to i steps in loop
+    proglabel2.config(text="   ")
 
 def undefined():
     import sqlite3
-    from rfpack.adjcreac import ADCEDep, ADCECrea
+    from ADCE_Crea import ADCECrea
+    from ADCE_Crea import ADCEDep
+    import os.path
     global proglabel2
-
-    datab = Path('C:/sqlite/20200522_sqlite.db')
-    conn = sqlite3.connect(datab)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(BASE_DIR, "20200522_sqlite.db")
+    conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS ADCE_Add")
     c.execute("""CREATE TABLE ADCE_Add (
@@ -236,12 +205,12 @@ def undefined():
 
 def missing():
     import sqlite3
-    from rfpack.adjcreac import ADJSDep, ADJSCrea
+    from ADJS_Crea import ADJSCrea
+    from ADJS_Crea import ADJSDep
     import os.path
-    datab = Path('C:/sqlite/20200522_sqlite.db')
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    # db_path = os.path.join(BASE_DIR, "20200522_sqlite.db")
-    conn = sqlite3.connect(datab)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(BASE_DIR, "20200522_sqlite.db")
+    conn = sqlite3.connect(db_path)
 
     def insert_crea(crea):
         with conn:
@@ -379,7 +348,7 @@ def missing():
 root = Tk()
 root.title('NorOcc Table - Audit Process')
 root.iconbitmap('IT.ico')
-root.geometry("400x400+350+200")        # WxH+Right+Down
+root.geometry("400x200+350+200")        # WxH+Right+Down
 my_progress = ttk.Progressbar(root, orient=HORIZONTAL, length=300, mode='determinate')
 # my_progress.pack(pady=20)
 my_progress.grid(row=0, column=0, columnspan=2,pady=10, padx=10, ipadx=10)
@@ -396,19 +365,13 @@ tables_btn.grid(row=1, column=0, columnspan=1, pady=10, padx=10, ipadx=39)
 # Create Audit Button
 audit_btn = Button(root, text="Reuse Audits", command=audit)
 audit_btn.grid(row=1, column=1, columnspan=1, pady=10, padx=10, ipadx=23)
-# Create A Missing Button
+# Create A Delete Button
 miss_btn = Button(root, text="Missing UMTS", command=missing)
 miss_btn.grid(row=2, column=0, columnspan=1, pady=10, padx=10, ipadx=18)
-# Create An Undefined Button
+# Create A Delete Button
 undef_btn = Button(root, text="Undefined GSM", command=undefined)
 undef_btn.grid(row=2, column=1, columnspan=1, pady=10, padx=10, ipadx=17)
-# Create A general audit Button
-gralaud_btn = Button(root, text="General Audit", command=gralaud)
-gralaud_btn.grid(row=3, column=0, columnspan=1, pady=10, padx=10, ipadx=18)
-# Create A specific audit Button
-specaud_btn = Button(root, text="Specific Audit", command=specaud)
-specaud_btn.grid(row=3, column=1, columnspan=1, pady=10, padx=10, ipadx=17)
 # Create an Exit Button
 q_btn = Button(root, text="Exit", command=root.destroy)
-q_btn.grid(row=4, column=0, columnspan=1, pady=10, padx=10, ipadx=45)
+q_btn.grid(row=3, column=0, columnspan=1, pady=10, padx=10, ipadx=45)
 root.mainloop()
